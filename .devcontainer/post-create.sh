@@ -48,10 +48,9 @@ cat <<'BANNER'
   ─────────────────────────────────────────────
    E190BO environment ready.
 
-   python --version     check the interpreter
-   claude --version     check Claude Code
-   docker --version     check Docker (class 12)
-   railway --version    check Railway (class 12)
+   bash demos/check_tools.sh     is everything installed?
+   python demos/hello_web.py     does port forwarding work?
+   More checks: demos/README.md
 
    Run the API:   uvicorn main:app --reload --host 0.0.0.0 --port 8000
    Serve the UI:  python -m http.server 8080 --directory web
