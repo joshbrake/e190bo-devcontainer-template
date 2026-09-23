@@ -16,10 +16,12 @@ This is your working repo for Labs 5, 6, and 7 and for the final project.
 4. When the terminal prints the ready banner, run:
 
    ```bash
-   python --version     # 3.13.x
-   claude --version
-   docker --version
+   bash demos/check_tools.sh     # every tool, with a ✅ or ❌
+   python demos/hello_web.py     # then open port 8080 from the PORTS tab
    ```
+
+   More one-command checks (Docker, Postgres, MCP, notebooks) are in
+   [`demos/`](demos/README.md).
 
 That is the whole setup. There is nothing to install on your laptop.
 
@@ -80,6 +82,7 @@ now, just do it.
 requirements.txt    Python packages
 docker-compose.yml  Postgres, for class 12
 .env.example        which environment variables exist (never real secrets)
+demos/              one-command checks that each tool works
 ```
 
 ## Getting help
