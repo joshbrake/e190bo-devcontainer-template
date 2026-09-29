@@ -18,13 +18,6 @@ echo "==> Installing Python packages (uv)"
 #   --user    : uv rejects it outright ("pip's `--user` is unsupported").
 sudo uv pip install --system --no-cache -r requirements.txt
 
-echo "==> Registering the notebook kernel"
-# JupyterLab started with `uvx jupyter lab` runs in uv's own environment, whose
-# default kernel can't see the packages installed above (sqlmodel, jupysql...).
-# This registers this codespace's Python as a kernel it can see, listed as
-# "Python (codespace)". Harmless if it's already there.
-python -m ipykernel install --user --name e190bo --display-name "Python (codespace)"
-
 echo "==> Installing Railway CLI"
 # Pinned, same rule as requirements.txt. Bump deliberately, not by accident.
 npm install -g --silent @railway/cli@5.58.0
