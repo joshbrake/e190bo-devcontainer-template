@@ -1,6 +1,8 @@
-# E190BO — your project repo
+# E190BO — a repo for one lab
 
-This is your working repo for Labs 5, 6, and 7 and for the final project.
+Every E190BO repo starts here: one for each lab from Lab 5 on, and later one for your final project.
+Make a new repo from this template for each lab, the same way each time.
+Name it for what it holds: `e190bo-lab-05`, `e190bo-lab-06`, and so on.
 
 ## Start here
 
@@ -25,8 +27,8 @@ This is your working repo for Labs 5, 6, and 7 and for the final project.
 
 That is the whole setup. There is nothing to install on your laptop.
 
-**Do this before class on 9/30, not during it.** A cold build in the first ten
-minutes of class is ten minutes you do not get back.
+**Do this before the class where you first need it, not during it.** A cold
+build in the first ten minutes of class is ten minutes you do not get back.
 
 ## Why a codespace
 
@@ -59,28 +61,39 @@ Codespaces stop themselves after 30 minutes idle. To stop one now:
 gh codespace stop
 ```
 
+Each lab's repo gets its own codespace, and stopped codespaces still use your
+storage allowance. Once a lab's check-in is done, delete its codespace at
+<https://github.com/codespaces>. Your code is safe on GitHub, as long as you
+pushed it.
+
 ## Running things
 
+Each lab's code lives in a `src/` folder, which you make in the lab's first
+step. Run things from there:
+
 ```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000   # the API
-python -m http.server 8080 --directory web             # the frontend
-docker compose up -d                                   # Postgres (class 12)
+cd src
+uvicorn main:app --reload     # the API (and, from Lab 6 on, the page it serves)
+pytest                        # the tests, with the API running in another terminal
 ```
 
 VS Code pops up a **Ports** notification with a forwardable URL. That URL is
 real and works on your phone — try it.
 
-**Always bind `0.0.0.0`, never `127.0.0.1`.** In a container, `127.0.0.1` means
-"reachable only from inside this container," so the port forward finds nothing
-and you get a blank page with no error. We will explain properly on 10/12; for
-now, just do it.
+Postgres, when a lab needs it, runs from the top of the repo:
+`docker compose up -d`.
+
+`make dev` and `make test` are shortcuts for the two commands above, but the
+labs teach the commands themselves: know what a shortcut stands for before you
+lean on it.
 
 ## Layout
 
 ```
+src/                your lab's code: you make this folder in each lab
 .devcontainer/      the environment definition — you should not need to touch it
 requirements.txt    Python packages
-docker-compose.yml  Postgres, for class 12
+docker-compose.yml  Postgres, for the labs that need it
 .env.example        which environment variables exist (never real secrets)
 demos/              one-command checks that each tool works
 ```
