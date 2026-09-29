@@ -1,6 +1,7 @@
 # student-template — instructor notes
 
-Authoring copy of the repo students start from for Labs 5–7 and the project.
+Authoring copy of the repo students start from: one new repo per lab for Labs 5–7
+(lab code in `src/`), and the project.
 
 **Recommendation: move this to its own repo and make that the source of truth.**
 See "Publishing" below for why, and for the extraction command.

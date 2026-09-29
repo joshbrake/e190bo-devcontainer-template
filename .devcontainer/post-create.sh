@@ -18,6 +18,13 @@ echo "==> Installing Python packages (uv)"
 #   --user    : uv rejects it outright ("pip's `--user` is unsupported").
 sudo uv pip install --system --no-cache -r requirements.txt
 
+echo "==> Registering the notebook kernel"
+# JupyterLab started with `uvx jupyter lab` runs in uv's own environment, whose
+# default kernel can't see the packages installed above (sqlmodel, jupysql...).
+# This registers this codespace's Python as a kernel it can see, listed as
+# "Python (codespace)". Harmless if it's already there.
+python -m ipykernel install --user --name e190bo --display-name "Python (codespace)"
+
 echo "==> Installing Railway CLI"
 # Pinned, same rule as requirements.txt. Bump deliberately, not by accident.
 npm install -g --silent @railway/cli@5.58.0
@@ -52,11 +59,9 @@ cat <<'BANNER'
    python demos/hello_web.py     does port forwarding work?
    More checks: demos/README.md
 
-   Run the API:   uvicorn main:app --reload --host 0.0.0.0 --port 8000
-   Serve the UI:  python -m http.server 8080 --directory web
-
-   Never bind to 127.0.0.1 in here — you would be the
-   only one who could reach it. Ask again on 10/12.
+   Your lab's code goes in src/. Run it from there:
+     cd src && uvicorn main:app --reload
+   Then open port 8000 from the PORTS tab.
   ─────────────────────────────────────────────
 
 BANNER
